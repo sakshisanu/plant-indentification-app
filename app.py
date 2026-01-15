@@ -5,7 +5,7 @@ import tensorflow as tf
 st.title("🌿 Plant Identification App")
 
 # Load model
-model=tf.keras.models.load_model("keras_model.h5",compile=False)
+model=tf.keras.models.load_model("keras_model.h5",compile=False,custom_objects={"DepthwiseConv2D":tf.keras.layers.DepthwiseConv2D})
 
 # Load labels
 class_names = open("labels.txt", "r").readlines()
@@ -33,3 +33,4 @@ if uploaded_file is not None:
     st.success(f"🌱 Plant: {class_name}")
 
     st.info(f"Confidence: {confidence_score:.4f}")
+
