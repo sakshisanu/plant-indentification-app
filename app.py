@@ -1,12 +1,11 @@
 import streamlit as st
 import numpy as np
 from PIL import Image, ImageOps
-from tensorflow.keras.models import load_model
-
+import tensorflow as tf
 st.title("🌿 Plant Identification App")
 
 # Load model
-model = load_model("keras_model.h5", compile=False)
+model=tf.keras.models.load_model("keras_model.h5",compile=False)
 
 # Load labels
 class_names = open("labels.txt", "r").readlines()
@@ -32,4 +31,5 @@ if uploaded_file is not None:
 
     st.image(image, caption="Uploaded Image", use_column_width=True)
     st.success(f"🌱 Plant: {class_name}")
+
     st.info(f"Confidence: {confidence_score:.4f}")
